@@ -64,7 +64,7 @@ login = async (req, res) => {
     if (!isValidPassword) return res.status(401).send('Wrong email or password!');
 
     // CREATE AN AUTHENTICATION TOKEN
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 });
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
     res.header('auth-token', token).send(token);
 }
 
