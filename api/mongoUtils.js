@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-const url = 'mongodb://localhost:27017/apio';
+dotenv.config();
 
-mongoose.connect(url, {
+mongoose.connect(process.env.MONGO_CONNECT, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}, () => console.log('Connected to DB!'));
+}, () => console.log('Successfully connected to database!'));
 
 //Get the default connection
 var db = mongoose.connection;

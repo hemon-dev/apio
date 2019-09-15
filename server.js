@@ -7,14 +7,14 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// Import users routes
+// IMPORT USER ROUTES
 const UserRoute = require('./api/routes/UserRoutes');
 
-// Set port
+// SET PORT
 const port = 5000;
 
-//Route middleware
+// ROUTE MIDDLEWARE
 app.use('/api', UserRoute);
 
-// Start server
+// START SERVER
 app.listen(port, () => console.log(chalk.cyan(`Server started at port ` + chalk.redBright.bold(`${port}`))));

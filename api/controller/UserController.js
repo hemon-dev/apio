@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../model/User');
 const { registrationValidator, loginValidator } = require('../validations/Validator');
 
@@ -17,14 +18,13 @@ index = async (req, res) => {
 
 // REGISTER USERS
 register = async (req, res) => {
-
     // VALIDATE REQUEST DATA
     const { error } = await registrationValidator(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
     // CHECK IF USER ALREADY EXIST WITH SUBMITTED EMAIL ID
     const emailExist = await User.findOne({email: req.body.email});
-    if(emailExist) return res.status(400).send('User with provided email ID is already exists');
+    if(emailExist) return res.status(400).send('User with provided email ID is already exist!');
 
     /**
      * STORE DATA IF NO ERROR
@@ -37,7 +37,7 @@ register = async (req, res) => {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword // SET HASH AS PASSWORD
     });
 
     try {
@@ -63,7 +63,9 @@ login = async (req, res) => {
     const isValidPassword = await bcrypt.compare(req.body.password, user.password);
     if (!isValidPassword) return res.status(401).send('Wrong email or password!');
 
-    res.status(200).send('Logged in!');
+    // CREATE AN AUTHENTICATION TOKEN
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 });
+    res.header('auth-token', token).send(token);
 }
 
 module.exports = {
