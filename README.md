@@ -19,7 +19,8 @@ Below is the structure of an application which holds major scripts
 * Clone the application
 * cd into application directory using terminal and run $ npm install
 * create .env file into root directory(touch .env using terminal or you can use any editor)
-* Set constants MONGO_CONNECT = mongodb://localhost:27017/apio & TOKEN_SECRET = yeg27bdh7253vsnms935gdcanfk748hksls. You can use different connection url for MONGO_CONNECT and different TOKEN_SECRET as per requirement.
+* Set constants MONGO_CONNECT = mongodb://localhost:27017/apio into .env or any url as per requirement.
+* Set constants TOKEN_SECRET = yeg27bdh7253vsnms935gdcanfk748hksls into .env or any random string as per requirement.
 * $ npm run server to start the server
 ```
 
