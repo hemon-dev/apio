@@ -19,5 +19,16 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.1",
     "nodemon": "^1.19.2"
-  }
+  },
+  "keywords": [
+    "Authentication",
+    "Middleware",
+    "MongoDB",
+    "Rest API",
+    "JSON",
+    "Web",
+    "Token",
+    "JWT",
+    "apio"
+  ]
 }
